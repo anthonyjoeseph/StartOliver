@@ -1,19 +1,21 @@
-//check issues and make sure all is good!
+// @flos
 
 import React, { Component } from 'react';
 import Tappable from 'react-tappable';
+import Flexbox from 'flexbox-react';
 
 import {
   Fullpage,
   Slide,
   HorizontalSlider,
-  Overlay,
-  changeHorizontalSlide
+  Overlay
 } from 'fullpage-react';
 
-import Landing from './Slides/Landing';
-import Mission from './Slides/Mission';
-import Map from './Slides/Map';
+import NavigationBar from './NavigationBar/NavigationBar';
+import SocialNetworkingBar from './SocialNetworkingBar/SocialNetworkingBar';
+import Landing from './Slides/Landing/Landing';
+import Mission from './Slides/Mission/Mission';
+import Map from './Slides/Map/Map';
 
 let fullPageOptions = {
   // for mouse/wheel events
@@ -28,12 +30,6 @@ let fullPageOptions = {
   hideScrollBars: true
 };
 
-let horizontalNavStyle = {
-  position: 'relative',
-  top: '80%',
-  left: '80%'
-};
-
 let horizontalSliderProps = {
   name: 'horizontalSlider1',
   scrollSpeed: 500,
@@ -44,47 +40,44 @@ let horizontalSliderProps = {
 };
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      slideIndex:0
+    }
+  }
 
   render() {
-    let prevHorizontalSlide = changeHorizontalSlide.bind(null, 'horizontalSlider1', 'PREV');
-    let nextHorizontalSlide = changeHorizontalSlide.bind(null, 'horizontalSlider1', 'NEXT');
-
-    let horizontalNav = (
-      <Overlay style={{top: '80%'}}>
-        <div style={horizontalNavStyle}>
-          <Tappable
-            onTap={prevHorizontalSlide}>
-            <button>PREV</button>
-          </Tappable>
-          <Tappable
-            onTap={nextHorizontalSlide}>
-            <button>Next</button>
-          </Tappable>
-        </div>
-      </Overlay>
-    );
-
-    let socialNetworkingNav = (
-      <Overlay style={{top: '10%', left: '80%'}}>
-        <div>
-          Insta, FB, Twitter
-        </div>
-      </Overlay>
-    );
-
+    //backgroundColor: "rgb(252, 295, 90)"
     return (
       <div style={{
         backgroundColor: "rgb(254, 194, 106)"
       }}>
-        {socialNetworkingNav}
-        <Fullpage {...fullPageOptions}>
-          <HorizontalSlider {...horizontalSliderProps}>
+        <Fullpage {...fullPageOptions}
+          onSlideChangeEnd={function(name, state){
+            this.setState({slideIndex: state.activeSlide});
+          }.bind(this)}
+        >
+          <HorizontalSlider {...horizontalSliderProps} >
             <Slide><Landing /></Slide>
             <Slide><Mission /></Slide>
             <Slide><Map /></Slide>
           </HorizontalSlider>
-          {horizontalNav}
+          <Overlay style={{
+            top: '85%',
+            left: '80%'
+          }}>
+            <NavigationBar
+              currentSlide={this.state.slideIndex}
+            />
+          </Overlay>
         </Fullpage>
+        <Overlay style={{
+          top: '10%', left: '80%'
+        }}>
+          <SocialNetworkingBar />
+        </Overlay>
       </div>
     );
   }
