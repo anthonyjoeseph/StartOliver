@@ -18,6 +18,7 @@ const CastleDetail = (props) => (
   >
     <Tappable onTap={props.onTap}>
       <img
+        alt="back"
         src={backIcon}
         style={{
           position: 'relative',

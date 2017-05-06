@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import Flexbox from 'flexbox-react';
-import Tappable from 'react-tappable';
 
 import email from './email.png';
 import facebook from './facebook.png';
@@ -16,6 +15,7 @@ const SocialNetworkingBar = (props) => (
   >
     <a href="https://www.instagram.com/broccoli_app/">
       <img
+        alt="instagram"
         src={instagram}
         width='40px'
         height='40px'
@@ -23,6 +23,7 @@ const SocialNetworkingBar = (props) => (
     </a>
     <a href="mailto:hello@playbroccoli.com">
       <img
+        alt="email"
         src={email}
         width='40px'
         height='30px'
@@ -30,6 +31,7 @@ const SocialNetworkingBar = (props) => (
     </a>
     <a href="https://www.facebook.com/Broccoli-193559324409522/">
       <img
+        alt="facebook"
         src={facebook}
         width='20px'
         height='40px'

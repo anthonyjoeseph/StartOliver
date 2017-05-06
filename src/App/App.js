@@ -1,8 +1,6 @@
 // @flos
 
 import React, { Component } from 'react';
-import Tappable from 'react-tappable';
-import Flexbox from 'flexbox-react';
 
 import {
   Fullpage,

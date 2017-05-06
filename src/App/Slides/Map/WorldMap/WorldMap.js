@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import Flexbox from 'flexbox-react';
 import Tappable from 'react-tappable';
 
 import worldMap from './world-map.png';
@@ -62,6 +61,7 @@ const Location = (props) => {
   var topPercent = props.top - (props.index * heightPercent);
   var inside = (
     <img
+      alt="clickable location"
       src={props.src}
       style={{
         width:'100%',
@@ -71,7 +71,7 @@ const Location = (props) => {
   );
   var middle = inside;
   if(props.onTap != null){
-    var middle = (
+    middle = (
         <Tappable onTap={props.onTap}>
           {inside}
         </Tappable>

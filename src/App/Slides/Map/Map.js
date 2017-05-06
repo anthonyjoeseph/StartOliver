@@ -1,7 +1,6 @@
 //check issues and make sure all is good!
 
 import React, { Component } from 'react';
-import Flexbox from 'flexbox-react';
 
 import MapScreen from './MapScreen';
 import CastleDetail from './CastleDetail/CastleDetail'

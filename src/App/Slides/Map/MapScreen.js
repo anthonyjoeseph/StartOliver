@@ -1,6 +1,5 @@
-//check issues and make sure all is good!
-
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 import Flexbox from 'flexbox-react';
 
 import WorldMap from './WorldMap/WorldMap';

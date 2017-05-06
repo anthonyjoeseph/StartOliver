@@ -34,6 +34,7 @@ const NavigationBar = (props) => {
     >
       <Tappable onTap={prevHorizontalSlide}>
         <img
+          alt="left arrow"
           src={leftArrow}
           width='30px'
         />
@@ -43,6 +44,7 @@ const NavigationBar = (props) => {
       </div>
       <Tappable onTap={nextHorizontalSlide}>
         <img
+          alt="right arrow"
           src={rightArrow}
           width='30px'
         />
