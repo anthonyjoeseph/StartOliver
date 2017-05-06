@@ -42,7 +42,11 @@ const NavigationBar = (props) => {
       <div style={styles.bigText} >
         {(props.currentSlide + 1)} / 3
       </div>
-      <Tappable onTap={nextHorizontalSlide}>
+      <Tappable onTap={function(){
+        if(props.currentSlide < 2){
+          nextHorizontalSlide();
+        }
+      }}>
         <img
           alt="right arrow"
           src={rightArrow}
