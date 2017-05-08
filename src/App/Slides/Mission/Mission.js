@@ -41,21 +41,9 @@ class Mission extends Component {
           flexDirection="row"
           justifyContent="flex-start"
           alignItems="center"
-          flexGrow={1}
+          flexGrow={2}
         >
           <div id="spacer" style={{width:'60px'}} />
-          <Flexbox
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-          >
-            <div style={styles.bigText}>
-              Oliver
-            </div>
-            <div style={styles.smallText}>
-              Start your journey
-            </div>
-          </Flexbox>
         </Flexbox>
         <Flexbox
           justifyContent="center"
@@ -75,7 +63,7 @@ class Mission extends Component {
           flexDirection="row"
           justifyContent="flex-start"
           alignItems="center"
-          flexGrow={1}
+          flexGrow={2}
         >
           <div id="spacer" style={{width:'60px'}} />
         </Flexbox>

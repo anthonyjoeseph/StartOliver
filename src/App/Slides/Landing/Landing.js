@@ -35,25 +35,7 @@ class Landing extends Component {
       >
         <Flexbox
           style={{width:"100%"}}
-          flexDirection="row"
-          justifyContent="flex-start"
-          alignItems="center"
-          flexGrow={2}
-        >
-          <div id="spacer" style={{width:'60px'}} />
-          <Flexbox
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-          >
-            <div style={styles.bigText}>
-              Oliver
-            </div>
-            <div style={styles.smallText}>
-              Start your journey
-            </div>
-          </Flexbox>
-        </Flexbox>
+          flexGrow={2} />
         <Flexbox
           flexGrow={1}
           justifyContent="flex-end"
@@ -62,7 +44,7 @@ class Landing extends Component {
           <img
             src={middlePicture}
             alt="desktop adventure items"
-            width="800px"
+            width="700px"
           />
         </Flexbox>
         <Flexbox
@@ -70,7 +52,7 @@ class Landing extends Component {
           flexDirection="row"
           justifyContent="flex-start"
           alignItems="flex-start"
-          flexGrow={2}
+          flexGrow={1}
         >
           <div id="spacer" style={{width:'60px'}} />
           <Flexbox
@@ -81,6 +63,7 @@ class Landing extends Component {
             <div style={styles.smallText}>
               Coming soon to
             </div>
+            <div id="spacer" style={{height:'5px'}} />
             <img
               src={kickstarterLogo}
               alt="kickstarter"

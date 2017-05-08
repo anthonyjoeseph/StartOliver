@@ -9,76 +9,142 @@ import {
   Overlay
 } from 'fullpage-react';
 
+import ReactSwipeNavigatable from './ReactSwipeNavigatable';
+import ScrollHandler from './ScrollHandler';
+
 import NavigationBar from './NavigationBar/NavigationBar';
 import SocialNetworkingBar from './SocialNetworkingBar/SocialNetworkingBar';
 import Landing from './Slides/Landing/Landing';
 import Mission from './Slides/Mission/Mission';
 import Map from './Slides/Map/Map';
 
-let fullPageOptions = {
-  // for mouse/wheel events
-  // represents the level of force required to generate a slide change on non-mobile, 10 is default
-  scrollSensitivity: 2,
-
-  // for touchStart/touchEnd/mobile scrolling
-  // represents the level of force required to generate a slide change on mobile, 10 is default
-  touchSensitivity: 2,
-  scrollSpeed: 500,
-  resetSlides: true,
-  hideScrollBars: true
-};
-
-let horizontalSliderProps = {
-  name: 'horizontalSlider1',
-  scrollSpeed: 500,
-  infinite: false,
-  resetSlides: false,
-  scrollSensitivity: 2,
-  touchSensitivity: 2
-};
-
 class App extends Component {
   constructor(props){
     super(props);
 
     this.state = {
-      slideIndex:0
+      slideIndex:0,
+      windowHeight: 0,
+      isOliverFixed: true,
+      isShowingDetailView: false
+    }
+
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.previousSlide = this.previousSlide.bind(this);
+    this.nextSlide = this.nextSlide.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ windowHeight: window.innerHeight });
+  }
+
+  previousSlide(){
+    const currentSlideIndex = this.state.slideIndex;
+    if(currentSlideIndex > 0 && !this.state.isShowingDetailView){
+      this.setState({
+        slideIndex: currentSlideIndex - 1,
+        isOliverFixed: currentSlideIndex <= 1
+      });
     }
   }
 
-  render() {
-    //backgroundColor: "rgb(252, 295, 90)"
+  nextSlide(){
+    const currentSlideIndex = this.state.slideIndex;
+    if(currentSlideIndex < 2 && !this.state.isShowingDetailView){
+      this.setState({
+        slideIndex: currentSlideIndex + 1,
+        isOliverFixed: currentSlideIndex < 1
+      });
+    }
+  }
+
+  render(){
     return (
-      <div style={{
-        backgroundColor: "rgb(254, 194, 106)"
-      }}>
-        <Fullpage {...fullPageOptions}
-          onSlideChangeEnd={function(name, state){
-            this.setState({slideIndex: state.activeSlide});
-          }.bind(this)}
+      <div
+        style={{
+          backgroundColor: "rgb(254, 194, 106)"
+        }}
+      >
+        <ScrollHandler
+          onScrollUp={this.previousSlide}
+          onScrollDown={this.nextSlide}
+        />
+        <ReactSwipeNavigatable
+          swipeOptions={{continuous: false}}
+          slideIndex={this.state.slideIndex}
+          duration={500}
         >
-          <HorizontalSlider {...horizontalSliderProps} >
-            <Slide><Landing /></Slide>
-            <Slide><Mission /></Slide>
-            <Slide><Map /></Slide>
-          </HorizontalSlider>
-          <Overlay style={{
-            top: '85%',
-            left: '80%'
-          }}>
-            <NavigationBar
-              currentSlide={this.state.slideIndex}
+          <div style={{height:this.state.windowHeight}}>
+            <Landing />
+          </div>
+          <div style={{height:this.state.windowHeight}}>
+            <Mission />
+            {
+              !this.state.isOliverFixed ? <OliverTop isFixed={false} /> : <div/>
+            }
+          </div>
+          <div style={{height:this.state.windowHeight}}>
+            <Map
+              changeDetailViewStatus={function(isShowingDetailView){
+                this.setState({isShowingDetailView: isShowingDetailView});
+              }.bind(this)}
+              windowHeight={this.state.windowHeight}
             />
-          </Overlay>
-        </Fullpage>
-        <Overlay style={{
-          top: '10%', left: '80%'
-        }}>
-          <SocialNetworkingBar />
-        </Overlay>
+          </div>
+        </ReactSwipeNavigatable>
+        {
+          this.state.isOliverFixed ? <OliverTop isFixed={true} /> : <div/>
+        }
+        <SocialNetworkingBar
+          style={{position:'absolute', top:'10%', right:'8%'}}
+        />
+        {
+          !this.state.isShowingDetailView ?
+          <NavigationBar
+            style={{position:'absolute', bottom:'10%', right:'10%'}}
+            currentSlide={this.state.slideIndex}
+            prev={this.previousSlide}
+            next={this.nextSlide}
+          />
+          :
+          <div />
+        }
       </div>
     );
   }
 }
+
+const OliverTop = (props) => {
+  return (
+    <div style={{position:'absolute', top:'5%', left:'5%'}}>
+      <div style={{
+        color: 'white',
+        fontFamily: "peachy-keen-jf",
+        fontWeight: '100',
+        fontSize: '30pt',
+        lineHeight: '125%'}}>
+        Oliver
+      </div>
+      <div style={{
+        textAlign: 'center',
+        color: 'white',
+        fontFamily: "peachy-keen-jf",
+        fontWeight: '100',
+        fontSize: '15pt',
+        lineHeight: '125%'}}>
+        Start your journey
+      </div>
+    </div>
+  );
+};
 
 export default App;

@@ -25,44 +25,45 @@ const styles = {
 const MapScreen = (props) => (
   <Flexbox
     flexDirection="column"
-    justifyContent='space-around'
+    justifyContent='flex-end'
     alignItems='center'
-    style={{height: '100%'}}
+    style={{ ...props.style , height: '100%'}}
   >
-    <Flexbox
-      style={{width:"100%"}}
-      flexDirection="row"
-      justifyContent="flex-start"
-      alignItems="center"
-      flexGrow={1}
-    >
-      <div id="spacer" style={{width:'60px'}} />
-      <Flexbox
-        flexDirection="column"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-      >
-        <div id="spacer" style={{height:'60px'}} />
-        <div style={styles.bigText}>
-          Take a peek<br/>at some of our locations!
-        </div>
-      </Flexbox>
-    </Flexbox>
+    <TopSection />
     <Flexbox
       style={{width:'100%', height: '60%'}}
       flexDirection="column"
       justifyContent="flex-start"
       alignItems="center"
-      flexGrow={2}
+      flexGrow={4}
     >
       <WorldMap
         onTap={props.onTap}
       />
     </Flexbox>
+    <Flexbox flexGrow={20} />
+  </Flexbox>
+);
+
+const TopSection = () => (
+  <Flexbox
+    style={{width:"100%"}}
+    flexDirection="row"
+    justifyContent="flex-start"
+    alignItems="center"
+    flexGrow={1}
+  >
+    <div id="spacer" style={{width:'60px'}} />
     <Flexbox
-      id="spacer"
-      style={{height:'10%'}}
-    />
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="flex-start"
+    >
+      <div id="spacer" style={{height:'60px'}} />
+      <div style={styles.bigText}>
+        Take a peek<br/>at some of our locations!
+      </div>
+    </Flexbox>
   </Flexbox>
 );
 

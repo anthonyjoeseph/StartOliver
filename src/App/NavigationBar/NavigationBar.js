@@ -7,6 +7,9 @@ import leftArrow from './left-arrow.png';
 import rightArrow from './right-arrow.png';
 
 const styles = {
+  container:{
+    width:'200px'
+  },
   bigText:{
     color: 'white',
     fontFamily: "peachy-keen-jf",
@@ -18,21 +21,16 @@ const styles = {
 
 const NavigationBar = (props) => {
 
-  let horizontalNavStyle = {
-    width: '200px'
-  };
-
-  let prevHorizontalSlide = changeHorizontalSlide.bind(null, 'horizontalSlider1', 'PREV');
-  let nextHorizontalSlide = changeHorizontalSlide.bind(null, 'horizontalSlider1', 'NEXT');
-
   return (
     <Flexbox
-      style={horizontalNavStyle}
+      style={{ ...props.style, ...styles.container }}
       flexDirection="row"
       justifyContent="space-between"
       alignItems="center"
     >
-      <Tappable onTap={prevHorizontalSlide}>
+      <Tappable onTap={function(){
+        props.prev();
+      }}>
         <img
           alt="left arrow"
           src={leftArrow}
@@ -43,9 +41,7 @@ const NavigationBar = (props) => {
         {(props.currentSlide + 1)} / 3
       </div>
       <Tappable onTap={function(){
-        if(props.currentSlide < 2){
-          nextHorizontalSlide();
-        }
+        props.next();
       }}>
         <img
           alt="right arrow"

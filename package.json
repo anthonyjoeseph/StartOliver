@@ -6,11 +6,14 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "exenv": "^1.2.2",
     "flexbox-react": "^4.3.3",
     "fullpage-react": "^2.0.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-tappable": "^0.8.4"
+    "react-swipe": "^5.0.8",
+    "react-tappable": "^0.8.4",
+    "swipe-js-iso": "^2.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

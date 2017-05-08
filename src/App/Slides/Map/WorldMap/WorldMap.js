@@ -12,9 +12,10 @@ import newYork from './new-york.png';
 const styles = {
   worldMap:{
     backgroundImage: 'url(' + worldMap + ')',
-    backgroundSize: '100% 100%',
+    backgroundSize: 'auto 100%',
+    backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    width: '80%',
+    width: '100%',
     height: '100%'
   }
 };
@@ -22,33 +23,38 @@ const styles = {
 const WorldMap = (props) => (
   <div style={styles.worldMap}>
     <Location
-      left={46}
+      left={48}
       top={10}
+      width={6}
       src={castle}
       onTap={() => {props.onTap('castle')}}
       index={0}
     />
     <Location
-      left={85}
+      left={73}
       top={23}
+      width={6.3}
       src={korea}
       index={1}
     />
     <Location
-      left={22}
+      left={31}
       top={28}
+      width={5.7}
       src={newYork}
       index={2}
     />
     <Location
       left={50}
       top={40}
+      width={5.7}
       src={desert}
       index={3}
     />
     <Location
-      left={13}
+      left={23}
       top={60}
+      width={6}
       src={amazon}
       index={4}
     />
@@ -56,7 +62,7 @@ const WorldMap = (props) => (
 );
 
 const Location = (props) => {
-  var widthPercent = 8;
+  var widthPercent = props.width;
   var heightPercent = 15;
   var topPercent = props.top - (props.index * heightPercent);
   var inside = (

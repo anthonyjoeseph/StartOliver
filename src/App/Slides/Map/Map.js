@@ -1,4 +1,4 @@
-//check issues and make sure all is good!
+// @flow
 
 import React, { Component } from 'react';
 
@@ -19,6 +19,7 @@ class Map extends Component {
 
   onLocationTap(location){
     if(location === "castle"){
+      this.props.changeDetailViewStatus(true);
       this.setState({
         showMapScreen: false
       });
@@ -26,6 +27,7 @@ class Map extends Component {
   }
 
   onDetailTap(){
+    this.props.changeDetailViewStatus(false);
     this.setState({
       showMapScreen: true
     });
@@ -35,7 +37,7 @@ class Map extends Component {
     if(this.state.showMapScreen){
       return <MapScreen onTap={this.onLocationTap} />;
     }else{
-      return <CastleDetail onTap={this.onDetailTap} />;
+      return <CastleDetail onTap={this.onDetailTap} windowHeight={this.props.windowHeight} />;
     }
   }
 }
