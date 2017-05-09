@@ -49,20 +49,22 @@ class App extends Component {
 
   previousSlide(){
     const currentSlideIndex = this.state.slideIndex;
-    if(currentSlideIndex > 0 && !this.state.isShowingDetailView){
+    if(!this.state.isShowingDetailView){
+      const prevSlideIndex = currentSlideIndex > 0 ? currentSlideIndex - 1 : 2;
       this.setState({
-        slideIndex: currentSlideIndex - 1,
-        isOliverFixed: currentSlideIndex <= 1
+        slideIndex: prevSlideIndex,
+        isOliverFixed: prevSlideIndex == 0
       });
     }
   }
 
   nextSlide(){
     const currentSlideIndex = this.state.slideIndex;
-    if(currentSlideIndex < 2 && !this.state.isShowingDetailView){
+    if(!this.state.isShowingDetailView){
+      const nextSlideIndex = currentSlideIndex < 2 ? currentSlideIndex + 1 : 0;
       this.setState({
-        slideIndex: currentSlideIndex + 1,
-        isOliverFixed: currentSlideIndex < 1
+        slideIndex: nextSlideIndex,
+        isOliverFixed: nextSlideIndex == 1
       });
     }
   }
@@ -85,11 +87,14 @@ class App extends Component {
         >
           <div style={{height:this.state.windowHeight}}>
             <Landing />
+            {
+              !this.state.isOliverFixed ? <OliverTop/> : <div/>
+            }
           </div>
           <div style={{height:this.state.windowHeight}}>
             <Mission />
             {
-              !this.state.isOliverFixed ? <OliverTop isFixed={false} /> : <div/>
+              !this.state.isOliverFixed ? <OliverTop /> : <div/>
             }
           </div>
           <div style={{height:this.state.windowHeight}}>
@@ -102,7 +107,7 @@ class App extends Component {
           </div>
         </ReactSwipeNavigatable>
         {
-          this.state.isOliverFixed ? <OliverTop isFixed={true} /> : <div/>
+          this.state.isOliverFixed ? <OliverTop /> : <div/>
         }
         <SocialNetworkingBar
           style={{position:'absolute', top:'10%', right:'8%'}}
@@ -125,22 +130,22 @@ class App extends Component {
 
 const OliverTop = (props) => {
   return (
-    <div style={{position:'absolute', top:'5%', left:'5%'}}>
+    <div style={{
+      position:'absolute', top:'5%', left:'5%',
+      color: 'white',
+      fontFamily: "peachy-keen-jf",
+      fontWeight: '100',
+      lineHeight: '125%'
+    }}>
       <div style={{
-        color: 'white',
-        fontFamily: "peachy-keen-jf",
-        fontWeight: '100',
-        fontSize: '30pt',
-        lineHeight: '125%'}}>
+        fontSize: '30pt'}}>
         Oliver
+        <br/>
+        <br/>
       </div>
       <div style={{
         textAlign: 'center',
-        color: 'white',
-        fontFamily: "peachy-keen-jf",
-        fontWeight: '100',
-        fontSize: '15pt',
-        lineHeight: '125%'}}>
+        fontSize: '15pt'}}>
         Start your journey
       </div>
     </div>

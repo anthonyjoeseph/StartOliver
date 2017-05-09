@@ -59,10 +59,11 @@ const TopSection = () => (
       justifyContent="flex-start"
       alignItems="flex-start"
     >
-      <div id="spacer" style={{height:'60px'}} />
+      <div id="spacer" style={{height:'30px'}} />
       <div style={styles.bigText}>
         Take a peek<br/>at some of our locations!
       </div>
+      <div id="spacer" style={{height:'30px'}} />
     </Flexbox>
   </Flexbox>
 );

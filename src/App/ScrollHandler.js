@@ -32,7 +32,7 @@ class ScrollHandler extends Component {
       const delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
       const currentTime = (new Date).getTime();
       const timeDiff = currentTime - this.lastScrollTime;
-      if(timeDiff > 1000){
+      if(timeDiff > 250){
         if(delta > 0){
           this.props.onScrollUp();
         }else{
