@@ -35,6 +35,7 @@ const WorldMap = (props) => (
       top={23}
       width={6.3}
       src={korea}
+      onTap={() => {props.onTap('korea')}}
       index={1}
     />
     <Location
@@ -42,6 +43,7 @@ const WorldMap = (props) => (
       top={28}
       width={5.7}
       src={newYork}
+      onTap={() => {props.onTap('newYork')}}
       index={2}
     />
     <Location
@@ -49,6 +51,7 @@ const WorldMap = (props) => (
       top={40}
       width={5.7}
       src={desert}
+      onTap={() => {props.onTap('desert')}}
       index={3}
     />
     <Location
@@ -56,6 +59,7 @@ const WorldMap = (props) => (
       top={60}
       width={6}
       src={amazon}
+      onTap={() => {props.onTap('amazon')}}
       index={4}
     />
   </div>

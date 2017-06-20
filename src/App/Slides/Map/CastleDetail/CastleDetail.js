@@ -14,7 +14,7 @@ const CastleDetail = (props) => {
       style={{
         width:'100%',
         height: heightPercent,
-        backgroundImage: "url(" + castleDetailImg + ")",
+        backgroundImage: "url(" + props.detailImg + ")",
         backgroundSize: "cover",
         backgroundColor:'white'
       }}
@@ -48,10 +48,10 @@ const CastleDetail = (props) => {
         alignItems='flex-end'
       >
         <Flexbox flex={1} style={{ fontSize: '35pt' }}>
-          Germany
+          {props.lineOne}
         </Flexbox>
         <Flexbox flex={1} style={{ fontSize: '25pt' }}>
-          Neuschwanstein castle
+          {props.lineTwo}
         </Flexbox>
       </Flexbox>
     </div>
