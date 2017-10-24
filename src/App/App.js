@@ -10,6 +10,21 @@ import SocialNetworkingBar from './SocialNetworkingBar/SocialNetworkingBar';
 import Landing from './Slides/Landing/Landing';
 import Mission from './Slides/Mission/Mission';
 import Map from './Slides/Map/Map';
+import MapDetail from './Slides/Map/MapDetail/MapDetail';
+
+import castleDetailImg from './Slides/Map/DetailImages/castle.png';
+import amazonDetailImg from './Slides/Map/DetailImages/amazon.png';
+import desertDetailImg from './Slides/Map/DetailImages/desert.png';
+import koreaDetailImg from './Slides/Map/DetailImages/korea.png';
+import newYorkDetailImg from './Slides/Map/DetailImages/newYork.png';
+
+const imagesForCities = {
+  "castle" : castleDetailImg,
+  "korea" : koreaDetailImg,
+  "newYork" : newYorkDetailImg,
+  "desert" : desertDetailImg,
+  "amazon" : amazonDetailImg
+}
 
 class App extends Component {
   constructor(props){
@@ -17,9 +32,11 @@ class App extends Component {
 
     this.state = {
       slideIndex:0,
+      windowWidth: 0,
       windowHeight: 0,
       isOliverFixed: true,
-      isShowingDetailView: false
+      isShowingDetailView: false,
+      detailViewImage: null
     }
 
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
@@ -37,7 +54,10 @@ class App extends Component {
   }
 
   updateWindowDimensions() {
-    this.setState({ windowHeight: window.innerHeight });
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
   }
 
   previousSlide(){
@@ -66,7 +86,7 @@ class App extends Component {
     return (
       <div
         style={{
-          backgroundColor: "rgb(254, 194, 106)"
+          backgroundColor: "rgb(113, 206, 232)"
         }}
       >
         <ScrollHandler
@@ -74,6 +94,7 @@ class App extends Component {
           onScrollDown={this.nextSlide}
         />
         <ReactSwipeNavigatable
+          style={{zIndex: 2}}
           swipeOptions={{continuous: false}}
           slideIndex={this.state.slideIndex}
           duration={500}
@@ -92,10 +113,12 @@ class App extends Component {
           </div>
           <div style={{height:this.state.windowHeight}}>
             <Map
-              changeDetailViewStatus={function(isShowingDetailView){
-                this.setState({isShowingDetailView: isShowingDetailView});
-              }.bind(this)}
-              windowHeight={this.state.windowHeight}
+              setDetailViewLocation={location => {
+                this.setState({
+                  isShowingDetailView: true,
+                  detailViewImage: imagesForCities[location]
+                })
+              }}
             />
           </div>
         </ReactSwipeNavigatable>
@@ -103,19 +126,31 @@ class App extends Component {
           this.state.isOliverFixed ? <OliverTop /> : <div/>
         }
         <SocialNetworkingBar
-          style={{position:'absolute', top:'10%', right:'8%'}}
+          style={{
+            position:'absolute',
+            zIndex: 1,
+            top:'10%',
+            right:'8%'
+          }}
         />
         {
-          !this.state.isShowingDetailView ?
-          <NavigationBar
-            style={{position:'absolute', bottom:'10%', right:'10%'}}
-            currentSlide={this.state.slideIndex}
-            prev={this.previousSlide}
-            next={this.nextSlide}
-          />
-          :
-          <div />
+          this.state.isShowingDetailView && (
+            <MapDetail
+              onTap={() => {
+                this.setState({isShowingDetailView: false});
+              }}
+              detailImg={this.state.detailViewImage}
+              windowWidth={this.state.windowWidth}
+              windowHeight={this.state.windowHeight}
+            />
+          )
         }
+        <NavigationBar
+          style={{position:'absolute', bottom:'10%', right:'10%'}}
+          currentSlide={this.state.slideIndex}
+          prev={this.previousSlide}
+          next={this.nextSlide}
+        />
       </div>
     );
   }

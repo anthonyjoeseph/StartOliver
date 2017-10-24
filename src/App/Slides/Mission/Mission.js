@@ -51,7 +51,7 @@ class Mission extends Component {
           flexGrow={1}
         >
           <div style={{...styles.padded, ...styles.bigText}}>
-            Our mission is to help children
+            Our mission is to help people
             learn about the topics of their
             interest while exploring the
             world to find the passions
