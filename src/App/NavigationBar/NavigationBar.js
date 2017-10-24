@@ -1,7 +1,6 @@
 import React from 'react';
 import Flexbox from 'flexbox-react';
 import Tappable from 'react-tappable';
-import { changeHorizontalSlide } from 'fullpage-react';
 
 import leftArrow from './left-arrow.png';
 import rightArrow from './right-arrow.png';

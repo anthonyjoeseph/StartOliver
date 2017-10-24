@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 
 import exenv from 'exenv';
 
-import ReactSwipe from 'react-swipe';
-
 class ScrollHandler extends Component {
   constructor(props){
     super(props);
 
-    this.lastScrollTime = (new Date).getTime();
+    this.lastScrollTime = (new Date()).getTime();
 
     this.handleScroll = this.handleScroll.bind(this);
   }
@@ -30,7 +28,7 @@ class ScrollHandler extends Component {
   handleScroll(event){
       const e = window.event || event; // old IE support
       const delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-      const currentTime = (new Date).getTime();
+      const currentTime = (new Date()).getTime();
       const timeDiff = currentTime - this.lastScrollTime;
       if(timeDiff > 250){
         if(delta > 0){

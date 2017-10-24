@@ -12,9 +12,9 @@ class ReactSwipeNavigatable extends Component {
   render(){
     return (
       <ReactSwipe
-        ref = {function(c){
+        ref={c => {
           this.slider = c;
-        }.bind(this)}
+        }}
         swipeOptions={this.props.swipeOptions}
       >
         {this.props.children}

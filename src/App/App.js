@@ -2,13 +2,6 @@
 
 import React, { Component } from 'react';
 
-import {
-  Fullpage,
-  Slide,
-  HorizontalSlider,
-  Overlay
-} from 'fullpage-react';
-
 import ReactSwipeNavigatable from './ReactSwipeNavigatable';
 import ScrollHandler from './ScrollHandler';
 
@@ -53,7 +46,7 @@ class App extends Component {
       const prevSlideIndex = currentSlideIndex > 0 ? currentSlideIndex - 1 : 2;
       this.setState({
         slideIndex: prevSlideIndex,
-        isOliverFixed: prevSlideIndex == 0
+        isOliverFixed: prevSlideIndex === 0
       });
     }
   }
@@ -64,7 +57,7 @@ class App extends Component {
       const nextSlideIndex = currentSlideIndex < 2 ? currentSlideIndex + 1 : 0;
       this.setState({
         slideIndex: nextSlideIndex,
-        isOliverFixed: nextSlideIndex == 1
+        isOliverFixed: nextSlideIndex === 1
       });
     }
   }

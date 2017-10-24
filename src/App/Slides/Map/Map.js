@@ -34,7 +34,7 @@ class Map extends Component {
         lineTwo: "",
         showMapScreen: false
       });
-    }else if(location == "korea"){
+    }else if(location === "korea"){
       this.props.changeDetailViewStatus(true);
       this.setState({
         detailImg: koreaDetailImg,
@@ -42,7 +42,7 @@ class Map extends Component {
         lineTwo: "",
         showMapScreen: false
       });
-    }else if(location == "newYork"){
+    }else if(location === "newYork"){
       this.props.changeDetailViewStatus(true);
       this.setState({
         detailImg: newYorkDetailImg,
@@ -50,7 +50,7 @@ class Map extends Component {
         lineTwo: "",
         showMapScreen: false
       });
-    }else if(location == "desert"){
+    }else if(location === "desert"){
       this.props.changeDetailViewStatus(true);
       this.setState({
         detailImg: desertDetailImg,
@@ -58,7 +58,7 @@ class Map extends Component {
         lineTwo: "",
         showMapScreen: false
       });
-    }else if(location == "amazon"){
+    }else if(location === "amazon"){
       this.props.changeDetailViewStatus(true);
       this.setState({
         detailImg: amazonDetailImg,

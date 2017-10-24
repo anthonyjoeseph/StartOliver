@@ -4,7 +4,6 @@ import React from 'react';
 import Tappable from 'react-tappable';
 import Flexbox from 'flexbox-react';
 
-import castleDetailImg from './castle-background1.jpg';
 import backIcon from './back-icon.png'
 
 const CastleDetail = (props) => {
