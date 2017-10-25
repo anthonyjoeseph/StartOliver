@@ -13,7 +13,7 @@ const SocialNetworkingBar = (props) => (
     justifyContent="space-between"
     alignItems="center"
   >
-    <a href="https://www.instagram.com/broccoli_app/">
+    <a href="https://www.instagram.com/application.oliver/">
       <img
         alt="instagram"
         src={instagram}
