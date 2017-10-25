@@ -119,6 +119,8 @@ class App extends Component {
                   detailViewImage: imagesForCities[location]
                 })
               }}
+              windowWidth={this.state.windowWidth}
+              windowHeight={this.state.windowHeight}
             />
           </div>
         </ReactSwipeNavigatable>
