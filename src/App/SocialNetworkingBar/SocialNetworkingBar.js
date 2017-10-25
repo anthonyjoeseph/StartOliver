@@ -8,7 +8,7 @@ import instagram from './instagram.png';
 
 const SocialNetworkingBar = (props) => (
   <Flexbox
-    style={{ ...props.style , width:'200px'}}
+    style={{ ...props.style , width:'120px'}}
     flexDirection="row"
     justifyContent="space-between"
     alignItems="center"
@@ -27,14 +27,6 @@ const SocialNetworkingBar = (props) => (
         src={email}
         width='40px'
         height='30px'
-      />
-    </a>
-    <a href="https://www.facebook.com/Broccoli-193559324409522/">
-      <img
-        alt="facebook"
-        src={facebook}
-        width='20px'
-        height='40px'
       />
     </a>
   </Flexbox>
