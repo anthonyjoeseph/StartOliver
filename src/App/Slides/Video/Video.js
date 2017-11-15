@@ -48,9 +48,15 @@ class Video extends Component {
           alignItems="center"
           flexGrow={1}
         >
-          <div style={{...styles.padded, ...styles.bigText}}>
-            CENTERED
-          </div>
+          <iframe
+            src="https://player.vimeo.com/video/242564489"
+            width="640"
+            height="360"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+          ></iframe>
         </Flexbox>
         <Flexbox
           style={{width:"100%",}}
