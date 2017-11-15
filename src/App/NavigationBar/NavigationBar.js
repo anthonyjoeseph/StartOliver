@@ -37,7 +37,7 @@ const NavigationBar = (props) => {
         />
       </Tappable>
       <div style={styles.bigText} >
-        {(props.currentSlide + 1)} / 3
+        {(props.currentSlide + 1)} / {props.numSlides}
       </div>
       <Tappable onTap={function(){
         props.next();

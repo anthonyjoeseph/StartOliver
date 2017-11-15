@@ -8,6 +8,7 @@ import ScrollHandler from './ScrollHandler';
 import NavigationBar from './NavigationBar/NavigationBar';
 import SocialNetworkingBar from './SocialNetworkingBar/SocialNetworkingBar';
 import Landing from './Slides/Landing/Landing';
+import Video from './Slides/Video/Video';
 import Mission from './Slides/Mission/Mission';
 import Map from './Slides/Map/Map';
 import MapDetail from './Slides/Map/MapDetail/MapDetail';
@@ -25,6 +26,9 @@ const imagesForCities = {
   "desert" : desertDetailImg,
   "amazon" : amazonDetailImg
 }
+
+const NUM_SLIDES = 4
+const HIGHEST_INDEX = NUM_SLIDES - 1
 
 class App extends Component {
   constructor(props){
@@ -63,10 +67,10 @@ class App extends Component {
   previousSlide(){
     const currentSlideIndex = this.state.slideIndex;
     if(!this.state.isShowingDetailView){
-      const prevSlideIndex = currentSlideIndex > 0 ? currentSlideIndex - 1 : 2;
+      const prevSlideIndex = currentSlideIndex > 0 ? currentSlideIndex - 1 : HIGHEST_INDEX;
       this.setState({
         slideIndex: prevSlideIndex,
-        isOliverFixed: prevSlideIndex === 0
+        isOliverFixed: prevSlideIndex === 0 || prevSlideIndex === 1
       });
     }
   }
@@ -74,10 +78,10 @@ class App extends Component {
   nextSlide(){
     const currentSlideIndex = this.state.slideIndex;
     if(!this.state.isShowingDetailView){
-      const nextSlideIndex = currentSlideIndex < 2 ? currentSlideIndex + 1 : 0;
+      const nextSlideIndex = currentSlideIndex < HIGHEST_INDEX ? currentSlideIndex + 1 : 0;
       this.setState({
         slideIndex: nextSlideIndex,
-        isOliverFixed: nextSlideIndex === 1
+        isOliverFixed: nextSlideIndex === 1 || nextSlideIndex === 2
       });
     }
   }
@@ -101,6 +105,12 @@ class App extends Component {
         >
           <div style={{height:this.state.windowHeight}}>
             <Landing />
+            {
+              !this.state.isOliverFixed ? <OliverTop/> : <div/>
+            }
+          </div>
+          <div style={{height:this.state.windowHeight}}>
+            <Video/>
             {
               !this.state.isOliverFixed ? <OliverTop/> : <div/>
             }
@@ -149,6 +159,7 @@ class App extends Component {
         }
         <NavigationBar
           style={{position:'absolute', bottom:'10%', right:'10%'}}
+          numSlides={NUM_SLIDES}
           currentSlide={this.state.slideIndex}
           prev={this.previousSlide}
           next={this.nextSlide}
