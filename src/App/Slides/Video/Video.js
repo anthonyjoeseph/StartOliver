@@ -49,14 +49,17 @@ class Video extends Component {
           flexGrow={1}
         >
           <iframe
-            src="https://player.vimeo.com/video/243214031"
             width="640"
             height="360"
+            src="https://www.youtube.com/embed/0N4zk3OwqUg"
             frameborder="0"
+            gesture="media"
+            allow="encrypted-media"
             webkitallowfullscreen
             mozallowfullscreen
-            allowfullscreen
-          ></iframe>
+            allowFullScreen
+          >
+          </iframe>
         </Flexbox>
         <Flexbox
           style={{width:"100%",}}
